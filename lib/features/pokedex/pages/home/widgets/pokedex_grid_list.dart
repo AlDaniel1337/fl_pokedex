@@ -1,4 +1,6 @@
-import 'package:fl_pokedex/features/home/widgets/pokedex_grid_list_item.dart';
+import 'package:fl_pokedex/core/navigation/navigation.dart';
+import 'package:fl_pokedex/core/navigation/routes.enum.dart';
+import 'package:fl_pokedex/features/pokedex/pages/home/widgets/pokedex_grid_list_item.dart';
 import 'package:fl_pokedex/infrastructure/services/poke_api.service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +16,7 @@ class PokedexGridList extends StatelessWidget {
 
     var size = MediaQuery.of(context).size;
     
-    _pokeApiService.get();
+    _pokeApiService.getPokemons();
 
     return Positioned(
       top: 150,
@@ -36,7 +38,10 @@ class PokedexGridList extends StatelessWidget {
                   return PokedexGridListItem( 
                     index: index,
                     imageSize: size.width * 0.25,
-                    pokemon: _pokeApiService.pokemons[index]
+                    pokemon: _pokeApiService.pokemons[index],
+                    onTap: () {
+                      Navigation.goToPage(page: Routes.pokemonDetails);
+                    },
                   );
                 },
               ),

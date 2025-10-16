@@ -1,4 +1,5 @@
 import 'package:fl_pokedex/core/plugins/http/dio.plugin.dart';
+import 'package:fl_pokedex/domain/entities/pokemon.entity.dart';
 import 'package:fl_pokedex/infrastructure/mappers/pokemon_model_to_entity.dart';
 import 'package:fl_pokedex/infrastructure/models/pokeapi_pokemon_response.dart';
 import 'package:fl_pokedex/infrastructure/models/pokeapi_pokemons_response.dart';
@@ -16,9 +17,9 @@ class PokeApiService extends GetxController{
     _dioPlugin = DioPlugin(_baseUrl);
   }   
 
-  var pokemons = [].obs;
+  RxList<Pokemon> pokemons = <Pokemon>[].obs;
   
-  get() async {
+  getPokemons() async {
 
     if(pokemons.isNotEmpty) return;
 
