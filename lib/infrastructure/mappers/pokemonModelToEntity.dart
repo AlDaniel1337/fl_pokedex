@@ -6,7 +6,7 @@ class PokemonModelToEntity {
     return Pokemon(
       id: model.id ?? 0,
       name: model.name ?? '',
-      imageUrl: model.sprites?.frontDefault ?? '',
+      imageUrl: model.sprites?.other?.dreamWorld?.frontDefault ?? '',
       types: model.types?.map((type) => type.type?.name ?? '').toList() ?? [],
     );
   }

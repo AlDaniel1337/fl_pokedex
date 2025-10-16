@@ -1,3 +1,4 @@
+import 'package:fl_pokedex/features/home/widgets/widgtes.index.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,15 +9,13 @@ class HomePage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-   
-      appBar: AppBar(
-         title: const Text('HomePage'),
-         centerTitle: true,
-      ),
-   
-      body: const Center(
-         child: Text('HomePage'),
+    return Scaffold(   
+      body: Stack(
+        children: [
+          const Pokeball(),
+          const PokedexTitle(),
+          const PokedexGridList()
+        ],
       ),
     );
   }
