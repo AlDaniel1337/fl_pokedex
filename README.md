@@ -1,16 +1,25 @@
-# fl_pokedex
+# Pokedex
 
-A new Flutter project.
+## Dev
 
-## Getting Started
+**Compilar y ejecutar proyecto**
+* Instalaciones previas
+  * Tener instalado **Flutter**
+  * Tener instalado **Dart**
+  * Tener instalado **VSCode**
+  * Tener instalado **Android Studio** (opcional, para emulador)
+* Tener un emulador o un dispositivo fisico conectado
+* Presionar **F5** o correr el comando `flutter run` en la terminal
+  * Seleccionar el dispositivo en caso de tener varios
+* Esperar a que se compile y se instale la app en el dispositivo
 
-This project is a starting point for a Flutter application.
+## Paquetes usados
+* get: ^4.7.2
+  * Manejo de estados y rutas
+* animate_do: ^4.2.0
+* dio: ^5.9.0
+  * Manejo de peticiones HTTP
+* flutter_svg: ^2.2.0 
+  * Manejo de imagenes SVG
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
