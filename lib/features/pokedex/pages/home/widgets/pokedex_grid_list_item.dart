@@ -35,7 +35,7 @@ class PokedexGridListItem extends StatelessWidget {
             child: Stack(
               children: [
 
-                _PokemonNumber(index: index),
+                _PokemonNumber(id: pokemon.id),
                 _PokemonName(name: pokemon.name),
                 _PokeballImage(imageSize: imageSize),
                 _PokemonImage(pokemon: pokemon),
@@ -99,8 +99,11 @@ class _PokemonImage extends StatelessWidget {
     return Positioned(
       bottom: 0,
       right: 0,
-      child: SvgImage(
-        imageUrl: pokemon.imageUrl,
+      child: SizedBox(
+        width: 100, height: 100,
+        child: SvgImage(
+          imageUrl: pokemon.imageUrl,
+        ),
       ),
     );
   }
@@ -151,10 +154,10 @@ class _PokemonName extends StatelessWidget {
 
 class _PokemonNumber extends StatelessWidget {
   const _PokemonNumber({
-    required this.index,
+    required this.id,
   });
 
-  final int index;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +165,7 @@ class _PokemonNumber extends StatelessWidget {
       top: 10,
       left: 10,
       child: Text(
-        '#${index + 1}',
+        '#$id',
         style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold

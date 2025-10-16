@@ -1,11 +1,9 @@
-import 'package:fl_pokedex/core/navigation/navigation.dart';
-import 'package:fl_pokedex/core/navigation/routes.enum.dart';
+import 'package:fl_pokedex/features/pokedex/controller/pokedex.controller.dart';
 import 'package:fl_pokedex/features/pokedex/pages/home/widgets/pokedex_grid_list_item.dart';
-import 'package:fl_pokedex/infrastructure/services/poke_api.service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-PokeApiService _pokeApiService = Get.put(PokeApiService());
+PokedexController _pokedexController = Get.put(PokedexController());
 class PokedexGridList extends StatelessWidget {
   const PokedexGridList({
     super.key,
@@ -15,8 +13,6 @@ class PokedexGridList extends StatelessWidget {
   Widget build(BuildContext context) {
 
     var size = MediaQuery.of(context).size;
-    
-    _pokeApiService.getPokemons();
 
     return Positioned(
       top: 150,
@@ -27,21 +23,20 @@ class PokedexGridList extends StatelessWidget {
           children: [
             Expanded(
               child: GridView.builder(
+                controller: _pokedexController.scrollController,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 1.4,
                 ), 
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
-                itemCount: _pokeApiService.pokemons.length,
+                itemCount: _pokedexController.pokemons.length,
                 itemBuilder: (context, index) {
                   return PokedexGridListItem( 
                     index: index,
                     imageSize: size.width * 0.25,
-                    pokemon: _pokeApiService.pokemons[index],
-                    onTap: () {
-                      Navigation.goToPage(page: Routes.pokemonDetails);
-                    },
+                    pokemon: _pokedexController.pokemons[index],
+                    onTap: () => _pokedexController.showDetails(index),
                   );
                 },
               ),
