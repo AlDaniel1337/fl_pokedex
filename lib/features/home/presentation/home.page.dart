@@ -9,12 +9,12 @@ class HomePage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(   
+    return const Scaffold(   
       body: Stack(
         children: [
-          const Pokeball(),
-          const PokedexTitle(),
-          const PokedexGridList()
+          Pokeball(),
+          PokedexTitle(),
+          PokedexGridList()
         ],
       ),
     );

@@ -8,10 +8,10 @@ class Pokeball extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
+    return const Positioned(
       top: -50,
       right: -50,
-      child: const PokeballBackgroundImage()
+      child: PokeballBackgroundImage()
     );
   }
 }
