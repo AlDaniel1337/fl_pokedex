@@ -8,6 +8,19 @@ class PokemonModelToEntity {
       name: model.name ?? '',
       imageUrl: model.sprites?.other?.dreamWorld?.frontDefault ?? '',
       types: model.types?.map((type) => type.type?.name ?? '').toList() ?? [],
+      animationUrl: model.sprites?.other?.showdown?.frontDefault,
+      description: null,
+      height: '${( (model.height ?? 0) / 10)} m',
+      weight: _libsToKilos("${model.weight ?? 0}"),
+      stats: model.stats?.map((stat) => Stats(
+        name: stat.stat?.name ?? '',
+        value: stat.baseStat ?? 0,
+      )).toList() ?? [],
     );
+  }
+
+  static String? _libsToKilos(String libs) {
+    final kilos = double.tryParse(libs) != null ? (double.parse(libs) / 10).toStringAsFixed(1) : null;
+    return kilos != null ? '$kilos kg' : null;
   }
 }

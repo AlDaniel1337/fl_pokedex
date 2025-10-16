@@ -1,10 +1,11 @@
-import 'package:fl_pokedex/infrastructure/services/poke_api.service.dart';
+import 'package:fl_pokedex/domain/entities/pokemon.entity.dart';
+import 'package:fl_pokedex/features/pokedex/controller/pokedex.controller.dart';
 import 'package:fl_pokedex/shared/widgets/widgets.index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import './widgets/widgets.index.dart';
 
-PokeApiService _pokeApiService = Get.put(PokeApiService());
+PokedexController _pokedexController = Get.put(PokedexController());
 class PokemonDetailsPage extends StatelessWidget {
 
   static const String route = "/PokemonDetailsPage";
@@ -15,7 +16,7 @@ class PokemonDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     var size = MediaQuery.of(context).size;
-    final selectedPokemon = _pokeApiService.pokemons[0];
+    final selectedPokemon = _pokedexController.pokemons[_pokedexController.selectedPokemonindex.value];
 
     return Scaffold(
 
@@ -33,11 +34,14 @@ class PokemonDetailsPage extends StatelessWidget {
           ),
 
           Positioned(
-            top: 150, left: (size.width / 2) - 100,
-            child: Image.network(
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
-              width: 200,
-              height: 200,
+            top: 150, left: (size.width / 2) - 75,
+            child: SizedBox(
+              width: 150,
+              height: 150,
+              child: Image.network(
+                selectedPokemon.animationUrl ?? selectedPokemon.imageUrl,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
 
@@ -50,71 +54,121 @@ class PokemonDetailsPage extends StatelessWidget {
           ),
 
           Positioned(
-            top: 430, left: 20,
-            child: Center(
-              child: Text(
-                selectedPokemon.name,
-                style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          const Positioned(
-            top: 480, left: 20,
-            child: Center(
-              child: Text(
-                '#1',
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
-          ),
-
-          Positioned(
-            top: 530,
+            top: 430, left: 0,
             child: Container(
-              height: 45,
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              decoration: const BoxDecoration(
-                color: Colors.orangeAccent,
-                borderRadius: BorderRadius.all(Radius.circular(25.0)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              width: size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  Container(
-                    width: 35,
-                    height: 35,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.local_fire_department,
-                      color: Colors.orangeAccent,
-                    ),
-                  ),
+                  PokemonName(name: selectedPokemon.name),
+                  const SizedBox(height: 10),
+                  PokemonTypes(selectedPokemon: selectedPokemon),
+                  const SizedBox(height: 20),
+                  _RowDetails(selectedPokemon: selectedPokemon, size: size),
+                  const SizedBox(height: 20),
 
-                  const SizedBox(width: 8.0),
-                  const Text(
-                    'Fire',
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
+                  ...selectedPokemon.stats.map((stat) => 
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: PokemonStatRow(
+                        statName: stat.name, 
+                        statValue: stat.value.toDouble(), 
+                        barValue: size.width * 0.6
+                      ),
+                    )
                   ),
+                  
+
                 ],
               ),
-            ),
-          )
+            )
+          ),
 
     
 
         ],
       ),
+    );
+  }
+}
+
+class PokemonStatRow extends StatelessWidget {
+
+  final String statName;
+  final double statValue;
+  final double barValue;
+
+  const PokemonStatRow({
+    super.key,
+    required this.statName,
+    required this.statValue,
+    required this.barValue,
+  });
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+
+        SizedBox(
+          width: 80,
+          child: Text(statName, 
+            style: const TextStyle(
+              fontSize: 16
+            )
+          ),
+        ),
+
+        Text( statValue.toString(), 
+          style: const TextStyle(
+            fontWeight: FontWeight.bold, 
+            fontSize: 16
+          )
+        ),
+
+        SizedBox(
+          width: barValue,
+          child: LinearProgressIndicator(
+            value: statValue / 100,
+            backgroundColor: Colors.grey[300],
+            color: (statValue / 100 >= 0.5) ?Colors.green : Colors.red,
+            minHeight: 4,
+            semanticsLabel: statName,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _RowDetails extends StatelessWidget {
+  const _RowDetails({
+    required this.selectedPokemon,
+    required this.size,
+  });
+
+  final Pokemon selectedPokemon;
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return PokemonRowImportanData(
+      children: [
+        InfoBox(
+          label: 'Altura',
+          value: selectedPokemon.height ?? 'N/A',
+          width: size.width * 0.3,
+        ),
+        InfoBox(
+          label: 'Peso',
+          value: selectedPokemon.weight ?? 'N/A',
+          width: size.width * 0.3,
+        ),
+      ],
     );
   }
 }
