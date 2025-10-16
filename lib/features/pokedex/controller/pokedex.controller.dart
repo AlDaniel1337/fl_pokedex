@@ -45,14 +45,12 @@ class PokedexController extends GetxController{
   }
 
   // +++ Lógica de Scroll Infinito +++
-
   void loadNextPage() async {
     if(isLoading.value) return;
     isLoading.value = true;
     await Future.delayed( const Duration( seconds: 2) );
 
     final newPokemons = await _pokeApiService.getPokemons(
-      // Usar .length para obtener el offset actual (GetX maneja .length como .value.length)
       offset: pokemons.length,
       limit: 20,
     );
