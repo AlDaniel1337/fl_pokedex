@@ -1,0 +1,1 @@
+export './pokeapi_pokemons_response.dart';
