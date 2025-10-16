@@ -1,3 +1,5 @@
+import 'package:fl_pokedex/core/navigation/navigation.dart';
+import 'package:fl_pokedex/core/navigation/routes.enum.dart';
 import 'package:fl_pokedex/core/plugins/svg_image/svg.plugin.dart';
 import 'package:fl_pokedex/domain/entities/pokemon.entity.dart';
 import 'package:fl_pokedex/shared/widgets/pokeball_background_image.dart';
@@ -28,7 +30,7 @@ class PokedexGridListItem extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(15),
-          onTap: (){},
+          onTap: () => Navigation.goToPage(page: Routes.pokemonDetails),
           child: Center(
             child: Stack(
               children: [
