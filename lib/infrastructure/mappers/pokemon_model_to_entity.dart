@@ -6,9 +6,9 @@ class PokemonModelToEntity {
     return Pokemon(
       id: model.id ?? 0,
       name: model.name ?? '',
-      imageUrl: model.sprites?.other?.dreamWorld?.frontDefault ?? '',
+      imageUrl: model.sprites?.other?.dreamWorld?.frontDefault ?? model.sprites?.frontDefault ?? '',
       types: model.types?.map((type) => type.type?.name ?? '').toList() ?? [],
-      animationUrl: model.sprites?.other?.showdown?.frontDefault,
+      animationUrl: model.sprites?.other?.showdown?.frontDefault ?? model.sprites?.frontDefault,
       description: null,
       height: '${( (model.height ?? 0) / 10)} m',
       weight: _libsToKilos("${model.weight ?? 0}"),
@@ -16,6 +16,7 @@ class PokemonModelToEntity {
         name: stat.stat?.name ?? '',
         value: stat.baseStat ?? 0,
       )).toList() ?? [],
+      abilities: model.abilities?.map((ability) => ability.ability?.name ?? '').toList() ?? [],
     );
   }
 

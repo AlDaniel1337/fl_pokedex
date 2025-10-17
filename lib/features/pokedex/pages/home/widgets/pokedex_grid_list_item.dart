@@ -96,13 +96,21 @@ class _PokemonImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var isSVGImage = pokemon.imageUrl.endsWith('.svg');
+
     return Positioned(
       bottom: 0,
       right: 0,
       child: SizedBox(
+
+        
         width: 100, height: 100,
-        child: SvgImage(
-          imageUrl: pokemon.imageUrl,
+        child: isSVGImage 
+        ? SvgImage( imageUrl: pokemon.imageUrl ) 
+        : Image.network(
+          pokemon.imageUrl,
+          fit: BoxFit.cover,
         ),
       ),
     );

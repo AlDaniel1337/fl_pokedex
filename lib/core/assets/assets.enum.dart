@@ -47,7 +47,6 @@ enum TypesAssets {
         (typeAsset) => typeAsset.name == lowerCaseName,
       );
     } catch (e) {
-      print('Warning: Asset not found for type: $name');
       return TypesAssets.unknown; // Retorna un valor por defecto
     }
   }

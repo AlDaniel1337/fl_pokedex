@@ -4,6 +4,7 @@ class Pokemon {
   final String imageUrl;
   final String? animationUrl;
   final List<String> types;
+  final List<String> abilities;
   final List<Stats> stats;
   final String? description;
   final String? height;
@@ -15,6 +16,7 @@ class Pokemon {
     required this.imageUrl,
     required this.types,
     required this.stats,
+    required this.abilities,
     this.animationUrl,
     this.description,
     this.height,
