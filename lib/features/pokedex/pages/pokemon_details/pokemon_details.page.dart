@@ -20,94 +20,100 @@ class PokemonDetailsPage extends StatelessWidget {
 
     return Scaffold(
 
-      body: Stack(
-        children: [
-
-          Positioned(
-            top: 0, left: 0, right: 0,
-            child: UContainer(
-              size: size,
-              child: const Center(
-                child: PokeballBackgroundImage(),
-              ),
-            ),
-          ),
-
-          Positioned(
-            top: 150, left: (size.width / 2) - 75,
-            child: SizedBox(
-              width: 150,
-              height: 150,
-              child: Image.network(
-                selectedPokemon.animationUrl ?? selectedPokemon.imageUrl,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-
-      
-          Positioned(
-            top: 40, left: 0, right: 0,
-            child: RowButtons(
-              onFavoritePressed: () {},
-            ),
-          ),
-
-          Positioned(
-            top: 390, left: 0,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              width: size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-
-                  PokemonName(name: selectedPokemon.name),
-                  const SizedBox(height: 10),
-                  PokemonTypes(selectedPokemon: selectedPokemon),
-                  const SizedBox(height: 10),
-                  _RowDetails(selectedPokemon: selectedPokemon, size: size),
-                  const SizedBox(height: 20),
-
-                  ...selectedPokemon.stats.map((stat) => 
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: PokemonStatRow(
-                        statName: stat.name, 
-                        statValue: stat.value.toDouble(), 
-                        barValue: size.width * 0.6
-                      ),
-                    )
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: 1000,
+          width: size.width,
+          child: Stack(
+            children: [
+          
+              Positioned(
+                top: 0, left: 0, right: 0,
+                child: UContainer(
+                  size: size,
+                  child: const Center(
+                    child: PokeballBackgroundImage(),
                   ),
-
-                  ...selectedPokemon.abilities.isNotEmpty ? [
-                    const SizedBox(height: 20),
-                    const Text('Habilidades', 
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold
-                      )
-                    ),
-                    const SizedBox(height: 10),
-                    Wrap(
-                      spacing: 8.0,
-                      runSpacing: 4.0,
-                      children: selectedPokemon.abilities.map((ability) => Chip(
-                        label: Text(ability[0].toUpperCase() + ability.substring(1)),
-                        backgroundColor: Colors.white10,
-                      )).toList(),
-                    ),
-                  ] : [],
-                  
-
-                ],
+                ),
               ),
-            )
+          
+              Positioned(
+                top: 150, left: (size.width / 2) - 75,
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: Image.network(
+                    selectedPokemon.animationUrl ?? selectedPokemon.imageUrl,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+          
+          
+              Positioned(
+                top: 40, left: 0, right: 0,
+                child: RowButtons(
+                  onFavoritePressed: () {},
+                ),
+              ),
+          
+              Positioned(
+                top: 390, left: 0,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  width: size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+          
+                      PokemonName(name: selectedPokemon.name),
+                      const SizedBox(height: 10),
+                      PokemonTypes(selectedPokemon: selectedPokemon),
+                      const SizedBox(height: 10),
+                      _RowDetails(selectedPokemon: selectedPokemon, size: size),
+                      const SizedBox(height: 20),
+          
+                      ...selectedPokemon.stats.map((stat) => 
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: PokemonStatRow(
+                            statName: stat.name, 
+                            statValue: stat.value.toDouble(), 
+                            barValue: size.width * 0.6
+                          ),
+                        )
+                      ),
+          
+                      ...selectedPokemon.abilities.isNotEmpty ? [
+                        const SizedBox(height: 20),
+                        const Text('Habilidades', 
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                          )
+                        ),
+                        const SizedBox(height: 10),
+                        Wrap(
+                          spacing: 8.0,
+                          runSpacing: 4.0,
+                          children: selectedPokemon.abilities.map((ability) => Chip(
+                            label: Text(ability[0].toUpperCase() + ability.substring(1)),
+                            backgroundColor: Colors.white10,
+                          )).toList(),
+                        ),
+                      ] : [],
+                      
+          
+                    ],
+                  ),
+                )
+              ),
+          
+              
+          
+            ],
           ),
-
-    
-
-        ],
+        ),
       ),
     );
   }
