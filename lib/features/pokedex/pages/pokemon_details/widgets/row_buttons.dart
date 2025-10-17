@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 class RowButtons extends StatelessWidget {
   
   final VoidCallback onFavoritePressed;
+  final bool isFavorite;
 
   const RowButtons({
     super.key,
     required this.onFavoritePressed,
+    required this.isFavorite,
   });
 
   @override
@@ -20,7 +22,7 @@ class RowButtons extends StatelessWidget {
         children: [
           const CustomBackButton(),
           CustomFavoriteButton(
-            isFavorite: false,
+            isFavorite: isFavorite,
             onPressed: onFavoritePressed,
           ),
         ],

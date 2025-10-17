@@ -1,3 +1,4 @@
+import 'package:fl_pokedex/core/storage/get_storage.plugin.dart';
 import 'package:fl_pokedex/core/theme/app_theme.controller.dart';
 import 'package:fl_pokedex/domain/entities/pokemon.entity.dart';
 import 'package:fl_pokedex/features/pokedex/controller/pokedex.controller.dart';
@@ -8,6 +9,8 @@ import './widgets/widgets.index.dart';
 
 PokedexController _pokedexController = Get.put(PokedexController());
 ThemeController _themeController = Get.put(ThemeController());
+FavoritesController _favController = Get.put(FavoritesController());
+
 class PokemonDetailsPage extends StatelessWidget {
 
   static const String route = "/PokemonDetailsPage";
@@ -56,9 +59,12 @@ class PokemonDetailsPage extends StatelessWidget {
           
               Positioned(
                 top: 40, left: 0, right: 0,
-                child: RowButtons(
-                  onFavoritePressed: () {},
-                ),
+                child: Obx( () => RowButtons(
+                  isFavorite: _favController.isFavorite(selectedPokemon.id),
+                  onFavoritePressed: () {
+                    _favController.toggleFavorite(selectedPokemon);
+                  },
+                )),
               ),
           
               Positioned(
