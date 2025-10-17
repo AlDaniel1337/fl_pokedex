@@ -19,8 +19,8 @@ class DioPlugin implements HttpClass{
       final response = await _http.get(url);
       return response.data;
     } catch (e) {
-      print('Error en la petición: $e');
-      return {'error': 'Error en la petición: $e'};
+      // print('Error en la petición: $e');
+      throw Exception('Error en la petición HTTP');
     }
   }
 }

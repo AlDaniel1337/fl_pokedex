@@ -21,29 +21,78 @@ class PokedexGridList extends StatelessWidget {
         width: size.width,
         child: Obx( () => Column(
           children: [
-            Expanded(
-              child: GridView.builder(
-                controller: _pokedexController.scrollController,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.4,
-                ), 
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                itemCount: _pokedexController.pokemons.length,
-                itemBuilder: (context, index) {
-                  return PokedexGridListItem( 
-                    index: index,
-                    imageSize: size.width * 0.25,
-                    pokemon: _pokedexController.pokemons[index],
-                    onTap: () => _pokedexController.showDetails(index),
-                  );
-                },
-              ),
-            ),
+            if (_pokedexController.searchResult.value == null)
+            _GridListWidget(size: size),
+            
+            if (_pokedexController.searchResult.value != null)
+            _GridListWidgetElement(size: size),
           ],
         ),
       )
     ));
+  }
+}
+
+class _GridListWidget extends StatelessWidget {
+  const _GridListWidget({
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: GridView.builder(
+        controller: _pokedexController.scrollController,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 1.4,
+        ), 
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
+        itemCount: _pokedexController.pokemons.length,
+        itemBuilder: (context, index) {
+          return PokedexGridListItem( 
+            index: index,
+            imageSize: size.width * 0.25,
+            pokemon: _pokedexController.pokemons[index],
+            onTap: () => _pokedexController.showDetails(index),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _GridListWidgetElement extends StatelessWidget {
+  const _GridListWidgetElement({
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: GridView.builder(
+        controller: _pokedexController.scrollController,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 1.4,
+        ), 
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
+        itemCount: 1,
+        itemBuilder: (context, index) {
+          return PokedexGridListItem( 
+            index: index,
+            imageSize: size.width * 0.25,
+            pokemon: _pokedexController.searchResult.value!,
+            onTap: () => _pokedexController.showDetails(index),
+          );
+        },
+      ),
+    );
   }
 }

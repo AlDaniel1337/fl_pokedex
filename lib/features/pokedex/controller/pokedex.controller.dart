@@ -68,4 +68,22 @@ class PokedexController extends GetxController{
       }
     });
   }
+
+  // ~~~ Lógica de Búsqueda Manual ~~~
+  Rx<Pokemon?> searchResult = Rx<Pokemon?>(null);
+
+  void searchPokemon(String query) async {
+    searchResult.value = null; 
+    try {
+      searchResult.value = await _pokeApiService.searchPokemon(query);
+    } catch (e) {
+      Get.snackbar("Error", "Pokémon no encontrado. Intenta otro nombre o ID.", 
+        snackPosition: SnackPosition.TOP
+      );
+      searchResult.value = null;
+    } 
+  }
+
+  void clearSearch() => searchResult.value = null;
+  
 }

@@ -8,7 +8,7 @@ class PokedexTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Positioned(
-      top: 100,
+      top: 10,
       left: 20,
       child: Text('Pokedex', 
         style: TextStyle(

@@ -14,7 +14,8 @@ class HomePage extends StatelessWidget {
         children: [
           Pokeball(),
           PokedexTitle(),
-          PokedexGridList()
+          PokedexGridList(),
+          CustomSearchBar(),
         ],
       ),
     );
