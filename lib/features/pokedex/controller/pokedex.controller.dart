@@ -12,7 +12,8 @@ class PokedexController extends GetxController{
 
   final PokeApiService _pokeApiService = PokeApiService();
 
-  var selectedPokemonindex = 0.obs;
+  var selectedPokemonIndex = 0.obs;
+  late Pokemon selectedPokemon;
 
   final ScrollController scrollController = ScrollController();
   var isLoading = false.obs;
@@ -40,7 +41,14 @@ class PokedexController extends GetxController{
   }
 
   void showDetails(int index) {
-    selectedPokemonindex.value = index;
+    selectedPokemonIndex.value = index;
+
+    if(searchResult.value != null) {
+      selectedPokemon = searchResult.value!;
+    } else {
+      selectedPokemon = pokemons[index];
+    }
+
     Navigation.goToPage(page: Routes.pokemonDetails);
   }
 

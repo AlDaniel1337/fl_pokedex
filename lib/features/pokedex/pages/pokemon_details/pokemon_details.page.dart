@@ -16,7 +16,7 @@ class PokemonDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     var size = MediaQuery.of(context).size;
-    final selectedPokemon = _pokedexController.pokemons[_pokedexController.selectedPokemonindex.value];
+    final selectedPokemon = _pokedexController.selectedPokemon;
 
     return Scaffold(
 
