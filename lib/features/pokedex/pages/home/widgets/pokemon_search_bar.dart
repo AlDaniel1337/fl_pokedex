@@ -67,6 +67,9 @@ class PokemonSearchBarState extends State<PokemonSearchBar> {
           ),
           
         ),
+        onChanged: (value) {
+          if (value.isEmpty) widget.onClear();
+        },
         onSubmitted: (_) => _handleSearch(),
       ),
     );
