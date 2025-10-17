@@ -14,6 +14,7 @@ class PokeApiService{
   }   
 
   final List<Pokemon> _pokemons = [];
+
   Future<List<Pokemon>> getPokemons({int limit = 20, int offset = 0}) async {
 
     _pokemons.clear();
@@ -43,6 +44,17 @@ class PokeApiService{
     _pokemons.addAll(detailedPokemons);
     
     return _pokemons;
+  }
+
+  Future<Pokemon?> searchPokemon(String query) async {
+    try {
+      final detail = await _dioPlugin.getResponse('pokemon/$query');
+      final detailModel = PokeapiPokemonResponse.fromJson(detail);
+      final pokemonEntity = PokemonModelToEntity.fromModel(detailModel);
+      return pokemonEntity;
+    } catch (e) {
+      throw Exception('Pokémon no encontrado');
+    }
   }
   
 }
