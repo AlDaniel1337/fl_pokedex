@@ -26,26 +26,26 @@
 ## Imagenes
 
 **Principal**
-<div style="display: flex; justify-content: center; align-items: center; height: 300px;">
-  <img src="./doc/principal.png" style="margin: 0 10px;" />
-  <img src="./doc/principal_dark.png" style="margin: 0 10px;" />
+<div style="display: flex; justify-content: center; align-items: center">
+  <img src="./doc/principal.png" width="200"  style="margin: 0 10px;" />
+  <img src="./doc/principal_dark.png" width="200" style="margin: 0 10px;" />
 </div>
 
 **Scroll Infinito**
-<div style="display: flex; justify-content: center; align-items: center; height: 300px;">
-  <img src="./doc/principal_scroll.png" style="margin: 0 10px;" />
+<div style="display: flex; justify-content: center; align-items: center; ">
+  <img src="./doc/principal_scroll.png" width="200"  style="margin: 0 10px;" />
 </div>
 
 **Búsqueda**
-<div style="display: flex; justify-content: center; align-items: center; height: 300px;">
-  <img src="./doc/principal_busqueda.png" style="margin: 0 10px;" />
-  <img src="./doc/principal_busqueda_404.png" style="margin: 0 10px;" />
+<div style="display: flex; justify-content: center; align-items: center;">
+  <img src="./doc/principal_busqueda.png" width="200"  style="margin: 0 10px;" />
+  <img src="./doc/principal_busqueda_404.png" width="200"  style="margin: 0 10px;" />
 </div>
 
 **Detalle**
-<div style="display: flex; justify-content: center; align-items: center; height: 300px;">
-  <img src="./doc/detalles.png" style="margin: 0 10px;" />
-  <img src="./doc/detalles_2.png" style="margin: 0 10px;" />
+<div style="display: flex; justify-content: center; align-items: center;">
+  <img src="./doc/detalles.png" width="200" style="margin: 0 10px;" />
+  <img src="./doc/detalles_2.png" width="200" style="margin: 0 10px;" />
 </div>
 
 
