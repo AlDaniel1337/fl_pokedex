@@ -9,6 +9,7 @@ class Pokemon {
   final String? description;
   final String? height;
   final String? weight;
+  final String? evolutionChain;
 
   Pokemon({
     required this.id,
@@ -21,6 +22,7 @@ class Pokemon {
     this.description,
     this.height,
     this.weight,
+    this.evolutionChain,
   });
 }
 

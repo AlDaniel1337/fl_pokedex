@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import './widgets/widgets.index.dart';
 
 PokedexController _pokedexController = Get.put(PokedexController());
-ThemeController _themeController = Get.find<ThemeController>();
+ThemeController _themeController = Get.put(ThemeController());
 class PokemonDetailsPage extends StatelessWidget {
 
   static const String route = "/PokemonDetailsPage";

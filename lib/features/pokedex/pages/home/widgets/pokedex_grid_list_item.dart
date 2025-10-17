@@ -5,7 +5,7 @@ import 'package:fl_pokedex/shared/widgets/pokeball_background_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-ThemeController _themeController = Get.find<ThemeController>();
+ThemeController _themeController = Get.put(ThemeController());
 class PokedexGridListItem extends StatelessWidget {
 
   final int index;
@@ -25,7 +25,7 @@ class PokedexGridListItem extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     return Container(
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(

@@ -54,6 +54,7 @@ class _GridListWidget extends StatelessWidget {
         itemCount: _pokedexController.pokemons.length,
         itemBuilder: (context, index) {
           return PokedexGridListItem( 
+            key: ValueKey(_pokedexController.pokemons[index].id),
             index: index,
             imageSize: size.width * 0.25,
             pokemon: _pokedexController.pokemons[index],
@@ -86,6 +87,7 @@ class _GridListWidgetElement extends StatelessWidget {
         itemCount: 1,
         itemBuilder: (context, index) {
           return PokedexGridListItem( 
+            key: ValueKey(_pokedexController.searchResult.value!.id),
             index: index,
             imageSize: size.width * 0.25,
             pokemon: _pokedexController.searchResult.value!,
