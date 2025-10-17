@@ -55,6 +55,7 @@ class PokedexController extends GetxController{
   // +++ Lógica de Scroll Infinito +++
   void loadNextPage() async {
     if(isLoading.value) return;
+
     isLoading.value = true;
     await Future.delayed( const Duration( seconds: 2) );
 
@@ -81,14 +82,20 @@ class PokedexController extends GetxController{
   Rx<Pokemon?> searchResult = Rx<Pokemon?>(null);
 
   void searchPokemon(String query) async {
+    if(isLoading.value) return;
+
+    isLoading.value = true;
+
     searchResult.value = null; 
     try {
       searchResult.value = await _pokeApiService.searchPokemon(query);
+      isLoading.value = false;
     } catch (e) {
       Get.snackbar("Error", "Pokémon no encontrado. Intenta otro nombre o ID.", 
         snackPosition: SnackPosition.TOP
       );
       searchResult.value = null;
+      isLoading.value = false;
     } 
   }
 
