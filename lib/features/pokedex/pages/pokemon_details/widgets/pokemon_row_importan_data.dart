@@ -20,11 +20,12 @@ class PokemonRowImportanData extends StatelessWidget {
             thickness: 1,
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [ ...children ],
         ),
+        const SizedBox(height: 10),
       ],
       
     );

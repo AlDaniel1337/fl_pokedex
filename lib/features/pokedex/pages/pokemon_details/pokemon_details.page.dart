@@ -54,7 +54,7 @@ class PokemonDetailsPage extends StatelessWidget {
           ),
 
           Positioned(
-            top: 430, left: 0,
+            top: 390, left: 0,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               width: size.width,
@@ -65,7 +65,7 @@ class PokemonDetailsPage extends StatelessWidget {
                   PokemonName(name: selectedPokemon.name),
                   const SizedBox(height: 10),
                   PokemonTypes(selectedPokemon: selectedPokemon),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   _RowDetails(selectedPokemon: selectedPokemon, size: size),
                   const SizedBox(height: 20),
 
@@ -79,6 +79,25 @@ class PokemonDetailsPage extends StatelessWidget {
                       ),
                     )
                   ),
+
+                  ...selectedPokemon.abilities.isNotEmpty ? [
+                    const SizedBox(height: 20),
+                    const Text('Habilidades', 
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      )
+                    ),
+                    const SizedBox(height: 10),
+                    Wrap(
+                      spacing: 8.0,
+                      runSpacing: 4.0,
+                      children: selectedPokemon.abilities.map((ability) => Chip(
+                        label: Text(ability[0].toUpperCase() + ability.substring(1)),
+                        backgroundColor: Colors.white10,
+                      )).toList(),
+                    ),
+                  ] : [],
                   
 
                 ],
