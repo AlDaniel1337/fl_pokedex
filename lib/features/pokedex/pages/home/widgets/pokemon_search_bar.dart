@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class PokemonSearchBar extends StatefulWidget {
   final void Function(String query) onSearch;
   final VoidCallback onClear;
+  final bool isLoading;
   
   const PokemonSearchBar({
     super.key,
     required this.onSearch,
     required this.onClear,
+    required this.isLoading,
   });
 
   @override
@@ -86,7 +88,12 @@ class PokemonSearchBarState extends State<PokemonSearchBar> {
           ),
           padding: const EdgeInsets.symmetric(horizontal: 15),
         ),
-        child: const Icon(Icons.search),
+        child: widget.isLoading 
+          ? const SizedBox(
+            height: 24, width: 24,
+            child: CircularProgressIndicator( strokeWidth: 2 )
+          ) 
+          : const Icon(Icons.search),
       ),
     );
   }
