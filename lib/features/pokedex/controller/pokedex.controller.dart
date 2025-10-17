@@ -93,5 +93,8 @@ class PokedexController extends GetxController{
   }
 
   void clearSearch() => searchResult.value = null;
+
+
+  // *** Lógica de Evolución ***
   
 }

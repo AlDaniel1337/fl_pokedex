@@ -1,8 +1,11 @@
 import 'package:fl_pokedex/core/plugins/svg_image/svg.plugin.dart';
+import 'package:fl_pokedex/core/theme/app_theme.controller.dart';
 import 'package:fl_pokedex/domain/entities/pokemon.entity.dart';
 import 'package:fl_pokedex/shared/widgets/pokeball_background_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+ThemeController _themeController = Get.find<ThemeController>();
 class PokedexGridListItem extends StatelessWidget {
 
   final int index;
@@ -20,10 +23,13 @@ class PokedexGridListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final colorScheme = Theme.of(context).colorScheme;
+    
     return Container(
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
-        color: Colors.redAccent,
+        color: _themeController.isDarkMode.value ? colorScheme.secondary : colorScheme.primary,
         borderRadius: BorderRadius.circular(15)
       ),
       child: Material(
@@ -103,8 +109,6 @@ class _PokemonImage extends StatelessWidget {
       bottom: 0,
       right: 0,
       child: SizedBox(
-
-        
         width: 100, height: 100,
         child: isSVGImage 
         ? SvgImage( imageUrl: pokemon.imageUrl ) 

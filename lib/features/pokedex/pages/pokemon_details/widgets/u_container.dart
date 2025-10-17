@@ -5,11 +5,13 @@ class UContainer extends StatelessWidget {
 
   final Size size;
   final Widget child;
+  final Color color;
    
   const UContainer({
     super.key,
     required this.size,
     required this.child,
+    required this.color,
   });
 
   @override
@@ -19,7 +21,7 @@ class UContainer extends StatelessWidget {
       child: Container(
         width: size.width,
         height: 400,
-        color: Colors.deepPurple,
+        color: color,
         child: child,
       ),
     );

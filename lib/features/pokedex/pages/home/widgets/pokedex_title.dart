@@ -14,7 +14,6 @@ class PokedexTitle extends StatelessWidget {
         style: TextStyle(
           fontSize: 30,
           fontWeight: FontWeight.bold,
-          color: Colors.black54,
         ),
       ),
     );

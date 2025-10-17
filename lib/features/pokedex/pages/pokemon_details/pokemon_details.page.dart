@@ -1,3 +1,4 @@
+import 'package:fl_pokedex/core/theme/app_theme.controller.dart';
 import 'package:fl_pokedex/domain/entities/pokemon.entity.dart';
 import 'package:fl_pokedex/features/pokedex/controller/pokedex.controller.dart';
 import 'package:fl_pokedex/shared/widgets/widgets.index.dart';
@@ -6,6 +7,7 @@ import 'package:get/get.dart';
 import './widgets/widgets.index.dart';
 
 PokedexController _pokedexController = Get.put(PokedexController());
+ThemeController _themeController = Get.find<ThemeController>();
 class PokemonDetailsPage extends StatelessWidget {
 
   static const String route = "/PokemonDetailsPage";
@@ -17,6 +19,7 @@ class PokemonDetailsPage extends StatelessWidget {
 
     var size = MediaQuery.of(context).size;
     final selectedPokemon = _pokedexController.selectedPokemon;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
 
@@ -30,6 +33,7 @@ class PokemonDetailsPage extends StatelessWidget {
               Positioned(
                 top: 0, left: 0, right: 0,
                 child: UContainer(
+                  color: _themeController.isDarkMode.value ? colorScheme.secondary : colorScheme.primary,
                   size: size,
                   child: const Center(
                     child: PokeballBackgroundImage(),

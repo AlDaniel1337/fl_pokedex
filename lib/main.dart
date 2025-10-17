@@ -1,8 +1,11 @@
 import 'package:fl_pokedex/core/navigation/navigation.dart';
+import 'package:fl_pokedex/core/theme/app_theme.controller.dart';
+import 'package:fl_pokedex/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
+  Get.put(ThemeController());
   runApp(const MyApp());
 }
 
@@ -13,13 +16,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    final themeController = Get.find<ThemeController>();
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Pokedex App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: AppThemes.lightTheme,
+      darkTheme: AppThemes.darkTheme,
+      themeMode: themeController.isDarkMode.value ? ThemeMode.dark : ThemeMode.light,
       initialRoute: Navigation.home,
       getPages: Navigation.getRoutes(),
       navigatorKey: Get.key,
