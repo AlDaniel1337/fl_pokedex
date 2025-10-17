@@ -17,6 +17,7 @@ class PokemonModelToEntity {
         value: stat.baseStat ?? 0,
       )).toList() ?? [],
       abilities: model.abilities?.map((ability) => ability.ability?.name ?? '').toList() ?? [],
+      moves: model.moves?.map((move) => move.move?.name ?? '').toList() ?? [],
     );
   }
 

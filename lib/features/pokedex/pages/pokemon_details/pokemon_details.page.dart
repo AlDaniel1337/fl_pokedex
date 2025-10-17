@@ -72,49 +72,32 @@ class PokemonDetailsPage extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   width: size.width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-          
-                      PokemonName(name: selectedPokemon.name),
-                      const SizedBox(height: 10),
-                      PokemonTypes(selectedPokemon: selectedPokemon),
-                      const SizedBox(height: 10),
-                      _RowDetails(selectedPokemon: selectedPokemon, size: size),
-                      const SizedBox(height: 20),
-          
-                      ...selectedPokemon.stats.map((stat) => 
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: PokemonStatRow(
-                            statName: stat.name, 
-                            statValue: stat.value.toDouble(), 
-                            barValue: size.width * 0.6
-                          ),
-                        )
-                      ),
-          
-                      ...selectedPokemon.abilities.isNotEmpty ? [
-                        const SizedBox(height: 20),
-                        const Text('Habilidades', 
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold
-                          )
-                        ),
+                  height: size.height - 400,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                            
+                        PokemonName(name: selectedPokemon.name),
                         const SizedBox(height: 10),
-                        Wrap(
-                          spacing: 8.0,
-                          runSpacing: 4.0,
-                          children: selectedPokemon.abilities.map((ability) => Chip(
-                            label: Text(ability[0].toUpperCase() + ability.substring(1)),
-                            backgroundColor: Colors.white10,
-                          )).toList(),
+                        PokemonTypes(selectedPokemon: selectedPokemon),
+                        const SizedBox(height: 10),
+                        _RowDetails(selectedPokemon: selectedPokemon, size: size),
+                        const SizedBox(height: 20),
+                            
+                        StatsList(stats: selectedPokemon.stats, size: size),
+                        AbilitiesList(
+                          data: selectedPokemon.abilities,
+                          title: 'Habilidades',
                         ),
-                      ] : [],
-                      
-          
-                    ],
+                        
+                        AbilitiesList(
+                          data: selectedPokemon.moves,
+                          title: 'Movimientos',
+                        ),
+                  
+                      ],
+                    ),
                   ),
                 )
               ),
@@ -129,56 +112,6 @@ class PokemonDetailsPage extends StatelessWidget {
   }
 }
 
-class PokemonStatRow extends StatelessWidget {
-
-  final String statName;
-  final double statValue;
-  final double barValue;
-
-  const PokemonStatRow({
-    super.key,
-    required this.statName,
-    required this.statValue,
-    required this.barValue,
-  });
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-
-        SizedBox(
-          width: 80,
-          child: Text(statName, 
-            style: const TextStyle(
-              fontSize: 16
-            )
-          ),
-        ),
-
-        Text( statValue.toString(), 
-          style: const TextStyle(
-            fontWeight: FontWeight.bold, 
-            fontSize: 16
-          )
-        ),
-
-        SizedBox(
-          width: barValue,
-          child: LinearProgressIndicator(
-            value: statValue / 100,
-            backgroundColor: Colors.grey[300],
-            color: (statValue / 100 >= 0.5) ?Colors.green : Colors.red,
-            minHeight: 4,
-            semanticsLabel: statName,
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 class _RowDetails extends StatelessWidget {
   const _RowDetails({

@@ -4,3 +4,5 @@ export './type_container.dart';
 export './pokemon_types.dart';
 export './pokemon_name.dart';
 export './pokemon_row_importan_data.dart';
+export './stats_list.dart';
+export './pokemon_abilities.dart';
