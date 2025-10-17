@@ -68,8 +68,16 @@
 
 ***
 
-**Diseño de la aplicación**
-* Revisar la carpeta `doc` incluida en el proyecto para ver la referencia de diseño de la aplicación.
+**Diseño y requisitos de la aplicación**
+* Revisar la carpeta `doc` incluida en el proyecto para ver la referencia de diseño de la aplicación a detalle.
+* Revisar el archivo `doc/requirements.md` para ver las funcionalidades implementadas y pendientes.
+
+**Referencias de diseño**
+<div style="display: flex; justify-content: center; align-items: center;">
+  <img src="./doc/ref/listado.webp" width="150" style="margin: 0 10px;" />
+  <img src="./doc/ref/general.webp" width="150" style="margin: 0 10px;" />
+  <img src="./doc/ref/detalles.gif" width="150" style="margin: 0 10px;" />
+</div>
 
 ***
 
