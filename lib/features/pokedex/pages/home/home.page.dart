@@ -1,6 +1,6 @@
-import 'package:fl_pokedex/shared/widgets/widgets.index.dart';
 import 'package:flutter/material.dart';
-import './widgets/widgtes.index.dart';
+import 'package:fl_pokedex/shared/widgets/widgets.index.dart';
+import 'widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
 

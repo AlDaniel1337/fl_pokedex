@@ -19,15 +19,26 @@ class PokedexGridList extends StatelessWidget {
       child: SizedBox(
         height: size.height - 160,
         width: size.width,
-        child: Obx( () => Column(
-          children: [
-            if (_pokedexController.searchResult.value == null)
-            _GridListWidget(size: size),
-            
-            if (_pokedexController.searchResult.value != null)
-            _GridListWidgetElement(size: size),
-          ],
-        ),
+        child: Obx( (){
+
+          if (_pokedexController.pokemons.isEmpty) {
+            return const Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              ),
+            );
+          }
+
+          return Column(
+            children: [
+              if (_pokedexController.searchResult.value == null)
+              _GridListWidget(size: size),
+              
+              if (_pokedexController.searchResult.value != null)
+              _GridListWidgetElement(size: size),
+            ],
+          );
+        }
       )
     ));
   }

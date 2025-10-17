@@ -14,10 +14,11 @@ class CustomSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       top: 70, left: 10, right: 10,
-      child: PokemonSearchBar(
+      child: Obx( () => PokemonSearchBar(
+        isLoading: _pokedexController.isLoading.value,
         onSearch: (query) => _pokedexController.searchPokemon(query),
         onClear: () => _pokedexController.clearSearch(),
-      ),
+      )),
     );
   }
 }
